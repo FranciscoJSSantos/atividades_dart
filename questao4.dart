@@ -34,11 +34,6 @@ void main() {
     faltas.add(int.parse(stdin.readLineSync()!));
   }
 
-  // print(matricula);
-  // print(nome);
-  // print(notas);
-  // print(faltas);
-
   //média da turma
 
   double mediaTurma = 0.0;
@@ -58,7 +53,46 @@ void main() {
     }
   }
 
-  var porcentagemAprovados = listaAprovados.length / 100;
+  var porcentagemAprovados = listaAprovados.length * 100;
 
-  var aprovadosDaSala = matricula.length;
+  var aprovadosDaSala = porcentagemAprovados / matricula.length;
+
+  print("O percentual de alunos aprovados é: $aprovadosDaSala");
+
+  //A matrícula do aluno do sexo masculino e feminino que possui a maior média e que
+  //foi aprovado.
+
+  var matriculaAlunosSexoMasculinoFemininoComMaiorMedia = [];
+  for (int i = 0; i < matricula.length; i++) {
+    if ((sexo[i] == "F") ||
+        (sexo[i] == "M") && notas[i] / 3 >= 7.0 && faltas[i] <= 18) {
+      matriculaAlunosSexoMasculinoFemininoComMaiorMedia.add(matricula[i]);
+    }
+  }
+
+  print(
+      "A matrícula do aluno do sexo masculino e feminino que /npossui a maior média e que foi aprovado são: $matriculaAlunosSexoMasculinoFemininoComMaiorMedia");
+
+  //A média dos alunos do sexo feminino.
+
+  var listaSexoFeminino = [];
+
+  for (int i = 0; i < matricula.length; i++) {
+    if (sexo[i] == "F") {
+      listaSexoFeminino.add(notas[i]);
+    }
+  }
+
+  double mediaSexoFeminino = 0.0;
+
+  for (int i = 0; i < listaSexoFeminino.length; i++) {
+    var nota = listaSexoFeminino[i] / 3;
+    mediaSexoFeminino = nota;
+  }
+
+  var doubleMediaAlunasSexoFeminino =
+      mediaSexoFeminino / listaSexoFeminino.length;
+
+  print(
+      "A média dos alunos do sexo feminino é: $doubleMediaAlunasSexoFeminino");
 }
